@@ -21,7 +21,7 @@
   <entry>
     <title>大小端和网络字节序</title>
     <url>/2020/06/08/%E5%A4%A7%E5%B0%8F%E7%AB%AF/</url>
-    <content><![CDATA[<h4 id="1-大小端"><a href="#1-大小端" class="headerlink" title="1.大小端"></a>1.大小端</h4><img src="https://img-blog.csdn.net/20180122231036867?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvel9yeWFu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="大小端" style="zoom:60%;" />
+    <content><![CDATA[<h4 id="1-大小端"><a href="#1-大小端" class="headerlink" title="1.大小端"></a>1.大小端</h4><img src="https://tva1.sinaimg.cn/large/008i3skNly1gs9r5js3tnj30hj06w76z.jpg" alt="大小端" style="zoom:60%;" />
 
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">大端字节序：高地址储存在低位</span><br><span class="line">小端字节序：高地址存储在高位</span><br></pre></td></tr></table></figure>
 
