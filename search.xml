@@ -51,6 +51,95 @@
       </tags>
   </entry>
   <entry>
+    <title>shell脚本简单总结</title>
+    <url>/2020/05/18/SHELL%20%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<h3 id="1-shell脚本的执行"><a href="#1-shell脚本的执行" class="headerlink" title="1.shell脚本的执行"></a>1.shell脚本的执行</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1.给脚本赋予执行权限后，./xxx.sh</span><br><span class="line"></span><br><span class="line">2. . xxx.sh</span><br><span class="line"></span><br><span class="line">3. source xxx.sh</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-shell变量"><a href="#2-shell变量" class="headerlink" title="2.shell变量"></a>2.shell变量</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1.环境变量</span><br><span class="line">	</span><br><span class="line">	printenv 显示当前shell进程下的环境变量</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">2.本地变量</span><br><span class="line"></span><br><span class="line">	设置本地变量 VAR=10 VAR1=&quot;hello&quot;</span><br><span class="line">	使用本地变量 $VAR  $VAR1</span><br><span class="line">	本地变量变成环境变量   export VAR=10</span><br><span class="line">	取消本地变量 unset VAR</span><br><span class="line"></span><br><span class="line">set 查看shell进程的本地变量和环境变量</span><br><span class="line"></span><br><span class="line">没有定义的变量取值是空字符串</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-shell代换"><a href="#3-shell代换" class="headerlink" title="3.shell代换"></a>3.shell代换</h3><h4 id="3-1文件名代换"><a href="#3-1文件名代换" class="headerlink" title="3.1文件名代换"></a>3.1文件名代换</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">* 匹配0个或多个  ls a*</span><br><span class="line">？ 匹配一个		ls a?</span><br><span class="line">[]列表中的任意一个字符的一次匹配 ls a[123]   ls a[1-3]</span><br><span class="line"></span><br><span class="line">匹配的文件名是由shell展开的，还没有传给程序之前，已经展开了，传递的是文件名，不是字符串</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-2命令代换"><a href="#3-2命令代换" class="headerlink" title="3.2命令代换"></a>3.2命令代换</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1. `命令`，如 DATE=`date`</span><br><span class="line">2. $(命令)，如 DATE=$(date)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-3-算术代换"><a href="#3-3-算术代换" class="headerlink" title="3.3 算术代换"></a>3.3 算术代换</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1. $(()),如 VAR=10，$(($VAR+1)),输出11</span><br><span class="line"></span><br><span class="line">2. $[],如 VAR=10，$[VAR+1]（或者 $[$VAR+1] ），输出11</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	$</span><span class="bash">[base<span class="comment">#n],以多少进制输出，如 $[2#10+11]代表2进制的10加上10进制的11</span></span></span><br><span class="line"></span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-4转义代换"><a href="#3-4转义代换" class="headerlink" title="3.4转义代换"></a>3.4转义代换</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">输出原意字符</span><br><span class="line">echo \$VAR,输出$VAR</span><br><span class="line"></span><br><span class="line">echo \\,输出\</span><br><span class="line"></span><br><span class="line">1. 如创建一个文件，名字为$ $</span><br><span class="line">	 touch \$\ \$</span><br><span class="line"></span><br><span class="line">特殊：-</span><br><span class="line"></span><br><span class="line">2.如创建一个文件，名字为 -hello</span><br><span class="line"></span><br><span class="line">	touch -- -hello.  OR    touch ./-hello</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">3. \ 还有续行的含义</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-单引号和双引号"><a href="#4-单引号和双引号" class="headerlink" title="4.单引号和双引号"></a>4.单引号和双引号</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1.&#x27;&#x27;   保持引号内字符的字面值</span><br><span class="line"></span><br><span class="line">	如： echo &#x27;$VAR&#x27; ,out: $VAR</span><br><span class="line">	</span><br><span class="line">	    echo  &#x27;abc\(enter)de&#x27;,out: abc\(enter)de</span><br><span class="line">	    </span><br><span class="line">2.&quot;&quot; 被视为单一字符串，允许变量扩展</span><br><span class="line"></span><br><span class="line">	如：</span><br><span class="line">		DATE=$(date)</span><br><span class="line">		echo &quot;DATE&quot; ,out:输出时间</span><br><span class="line">		echo &#x27;DATE&#x27; ,out:输出 DATE 字面值</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-条件测试"><a href="#5-条件测试" class="headerlink" title="5.条件测试"></a>5.条件测试</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1.  test</span><br><span class="line"></span><br><span class="line">	eg: var=2</span><br><span class="line">		test $var -gt 1</span><br><span class="line">		echo $?  (查看上一个进程的返回值，0为真，1位假)</span><br><span class="line"></span><br><span class="line">2. []</span><br><span class="line"></span><br><span class="line">	eg: </span><br><span class="line"><span class="meta">		[$</span><span class="bash">var -gt 1]</span></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">3.</span><br><span class="line">	-d 文件</span><br><span class="line">	-f 普通文件</span><br><span class="line">	-z string string长度为0，则为真</span><br><span class="line">	-n string string长度非0为真</span><br><span class="line">	=  相同为真</span><br><span class="line">	!= 不同为真</span><br><span class="line">	</span><br><span class="line">	ARG1 OP ARG2：</span><br><span class="line">		OP：</span><br><span class="line">			-eq 等于</span><br><span class="line">			-ne 不等于</span><br><span class="line">			-lt 小于</span><br><span class="line">			-gt 大于</span><br><span class="line">			-ge 大于等于</span><br><span class="line">			-le 小于等于</span><br><span class="line">			</span><br><span class="line">	！ 非</span><br><span class="line">	-a 与</span><br><span class="line">	-o 或</span><br><span class="line">	</span><br><span class="line">			</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-分支"><a href="#6-分支" class="headerlink" title="6.分支"></a>6.分支</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">if [ condition1 ];then</span><br><span class="line">	cmd1</span><br><span class="line">elif [ condition2 ];then</span><br><span class="line">	cmd2</span><br><span class="line">else</span><br><span class="line">	cmd3</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">case &quot;$VAR&quot; in</span><br><span class="line">condition1)</span><br><span class="line">	cmd1;;</span><br><span class="line">conition2)</span><br><span class="line">	cmd2;;(多条命令，最后一条命令加;;)</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="7-循环"><a href="#7-循环" class="headerlink" title="7.循环"></a>7.循环</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">for VAR in list;do</span><br><span class="line">	cmd</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------------------------------</span><br><span class="line">while [ conition1 ];do</span><br><span class="line">	cmd</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">break[n]可以指定跳出几层循环；continue跳过本次循环，但不会跳出循环</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="8-位置参数和特殊变量"><a href="#8-位置参数和特殊变量" class="headerlink" title="8.位置参数和特殊变量"></a>8.位置参数和特殊变量</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">0 --&gt;argv[0]</span></span><br><span class="line"><span class="meta">$</span><span class="bash">1,<span class="variable">$2</span>...  ---&gt;位置参数, argv[1],argv[2]...</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="comment"># ---&gt; argc-1</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash">@ ---&gt; 参数列表</span></span><br><span class="line"><span class="meta">$</span><span class="bash">* ---&gt; 参数列表</span></span><br><span class="line"><span class="meta">$</span><span class="bash">? ---&gt; 上一条命令的退出值</span></span><br><span class="line"><span class="meta">$</span><span class="bash">$ ---&gt; 当前进程号</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="9-echo"><a href="#9-echo" class="headerlink" title="9.echo"></a>9.echo</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">显示文本或者变量，把字符串输入到文件</span><br><span class="line"></span><br><span class="line">-e 解析转义字符</span><br><span class="line">-n 不回车换行，默认后面跟一个回车换行</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="10-管道"><a href="#10-管道" class="headerlink" title="10.管道"></a>10.管道</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">| 把前面命令的输出做为后面命令的输入</span><br><span class="line"></span><br><span class="line">cat myfile | more </span><br><span class="line"></span><br><span class="line">ls -l | grep &quot;myfile&quot;</span><br><span class="line"></span><br><span class="line">df -k | awk `&#123;print $1&#125;`</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="11-文件重定向"><a href="#11-文件重定向" class="headerlink" title="11.文件重定向"></a>11.文件重定向</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cmd &gt; file 把标准输出重定向到新文件中</span><br><span class="line">cmd &gt;&gt; file 追加</span><br><span class="line"></span><br><span class="line">cmd &gt; file 2&gt;&amp;1 标准出错也重新定向到1所指的file中   所有的东西都进入文件file</span><br><span class="line">cmd &gt;&gt; file 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line">cmd &lt; file1 &gt; file2 从file1读，写到file2中</span><br><span class="line"></span><br><span class="line">cmd &lt; &amp;fd 把文件描述符fd作为标准输入，从文件中读</span><br><span class="line">cmd &gt; &amp;fd  把文件描述符fd作为标准输出，输入到文件</span><br><span class="line"></span><br><span class="line">cmd &lt; &amp;- 关闭标准输入</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>C++</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>基础</tag>
+        <tag>shell</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/07/08/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>大小端和网络字节序</title>
     <url>/2020/06/08/%E5%A4%A7%E5%B0%8F%E7%AB%AF/</url>
     <content><![CDATA[<h4 id="1-大小端"><a href="#1-大小端" class="headerlink" title="1.大小端"></a>1.大小端</h4><img src="https://tva1.sinaimg.cn/large/008i3skNly1gs9r5js3tnj30hj06w76z.jpg" alt="大小端" style="zoom:60%;" />
@@ -76,23 +165,5 @@
         <tag>底层</tag>
         <tag>基础</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/07/08/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>
