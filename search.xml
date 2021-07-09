@@ -103,35 +103,31 @@
     <content><![CDATA[<a class="btn-beautify button--animated " href="https://www.bilibili.com/video/BV19E411f76x/" 
   title="直接看视频学习"><i class="far fa-hand-point-right"></i><span>直接看视频学习</span></a>
 
-<h3 id="1-什么是git"><a href="#1-什么是git" class="headerlink" title="1.什么是git?"></a>1.什么是git?</h3><ol>
-<li><p>分布式</p>
-</li>
-<li><p>版本控制</p>
-</li>
-<li><p>软件   </p>
-</li>
+<h3 id="什么是git"><a href="#什么是git" class="headerlink" title="什么是git?"></a>什么是git?</h3><ol>
+<li>分布式</li>
+<li>版本控制</li>
+<li>软件</li>
 </ol>
 <ul>
 <li>针对这三个名词的解释</li>
 </ul>
 <blockquote>
 <ul>
-<li><p><strong>软件</strong>：git是一个软件，需要你安装在电脑本地才可以使用。</p>
-</li>
-<li><p><strong>版本控制</strong>：你的一篇论文，需要反复修改和保留历史版本，比如论文有修改版，完成版，终极完成版。做好版本控制，有利于回滚和修改</p>
-</li>
-<li><p><strong>分布式</strong>：版本不但在本地存在一份，远端也完全存在一份一样的。每一个安装了git的主机上都有一个版本备份，这个备份包括所有的历史版本和修改版本。</p>
-</li>
+<li><strong>软件</strong>：git是一个软件，需要你安装在电脑本地才可以使用。</li>
+<li><strong>版本控制</strong>：你的一篇论文，需要反复修改和保留历史版本，比如论文有修改版，完成版，终极完成版。做好版本控制，有利于回滚和修改</li>
+<li><strong>分布式</strong>：版本不但在本地存在一份，远端也完全存在一份一样的。每一个安装了git的主机上都有一个版本备份，这个备份包括所有的历史版本和修改版本。</li>
 </ul>
 </blockquote>
 <ul>
 <li>安装git</li>
 </ul>
-<p>​    参见：<a href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git">安装git</a></p>
-<h3 id="2-我接下来要干啥？"><a href="#2-我接下来要干啥？" class="headerlink" title="2.我接下来要干啥？"></a>2.我接下来要干啥？</h3><ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">参见：</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git">安装git</a></p>
+<h3 id="我接下来要干啥？"><a href="#我接下来要干啥？" class="headerlink" title="我接下来要干啥？"></a>我接下来要干啥？</h3><ol>
 <li><p>新建一个文件夹，或者进入你要做版本控制的目录</p>
 </li>
-<li><p>执行初始化命令        </p>
+<li><p>执行初始化命令</p>
 <p><code>git init </code></p>
 </li>
 <li><p>查看目录下的文件状态</p>
@@ -139,7 +135,7 @@
 </li>
 <li><p>管理指定文件</p>
 <p><code>git add 文件名</code></p>
-<p><code>git  add . </code> </p>
+<p><code>git  add . </code></p>
 </li>
 <li><p>个人信息的配置：用户名和邮箱</p>
 <p><code>git config --global user.name &quot;your name&quot;</code></p>
@@ -148,25 +144,25 @@
 <li><p>生成版本</p>
 <p><code>git commit -m &#39;版本描述信息&#39;</code></p>
 </li>
-<li><p>查看版本记录        </p>
+<li><p>查看版本记录</p>
 <p><code>git log </code></p>
 <p><code>git log --graph</code>以图形化的形式查看版本记录</p>
 <p><code>git log --graph --pretty=format:&quot;%h %s&quot;</code>简略版的版本记录，包括哈希值和版本描述</p>
 </li>
 </ol>
-<h3 id="3-我想回退指定版本？"><a href="#3-我想回退指定版本？" class="headerlink" title="3.我想回退指定版本？"></a>3.我想回退指定版本？</h3><ol>
+<h3 id="我想回退指定版本？"><a href="#我想回退指定版本？" class="headerlink" title="我想回退指定版本？"></a>我想回退指定版本？</h3><ol>
 <li><p>回滚到之前版</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log</span><br><span class="line">git reset --hard 版本号   </span><br></pre></td></tr></table></figure></li>
 <li><p>回滚到之后版本</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git reflog</span><br><span class="line">git reset --hard 版本号</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h3 id="4-一个master分支不够怎么办？"><a href="#4-一个master分支不够怎么办？" class="headerlink" title="4.一个master分支不够怎么办？"></a>4.一个master分支不够怎么办？</h3><ul>
-<li>分支可以给我们提供另外一个环境，从master主线脱离出来，可以形成master专注于上线版本，新的dev 分支可以用于开发分支。   </li>
+<h3 id="一个master分支不够怎么办？"><a href="#一个master分支不够怎么办？" class="headerlink" title="一个master分支不够怎么办？"></a>一个master分支不够怎么办？</h3><ul>
+<li>分支可以给我们提供另外一个环境，从master主线脱离出来，可以形成master专注于上线版本，新的dev 分支可以用于开发分支。</li>
 </ul>
 <blockquote>
 <p><strong>基本的命令：</strong></p>
 <ul>
-<li><p>查看分支   </p>
+<li><p>查看分支</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure></li>
 <li><p>创建新的分支</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch 分支名称</span><br></pre></td></tr></table></figure></li>
@@ -178,39 +174,33 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -d 分支名称</span><br></pre></td></tr></table></figure></li>
 </ul>
 </blockquote>
-<h3 id="5-我想去公司继续搞代码？"><a href="#5-我想去公司继续搞代码？" class="headerlink" title="5.我想去公司继续搞代码？"></a>5.我想去公司继续搞代码？</h3><ul>
-<li><p>注册GitHub账号</p>
-</li>
-<li><p>在GitHub新建一个仓库，记下仓库的地址   </p>
-</li>
+<h3 id="我想去公司继续搞代码？"><a href="#我想去公司继续搞代码？" class="headerlink" title="我想去公司继续搞代码？"></a>我想去公司继续搞代码？</h3><ul>
+<li>注册GitHub账号</li>
+<li>在GitHub新建一个仓库，记下仓库的地址</li>
 </ul>
-<h4 id="5-1去公司之前你需要先把代码上传到自己的GitHub"><a href="#5-1去公司之前你需要先把代码上传到自己的GitHub" class="headerlink" title="5.1去公司之前你需要先把代码上传到自己的GitHub"></a>5.1去公司之前你需要先把代码上传到自己的GitHub</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.给你的GitHub仓库起一个别名</span><br><span class="line">	git remote add origin 远程仓库地址</span><br><span class="line">2.向GitHub推送你的代码</span><br><span class="line">	git push -u origin 分支（后面可以简写成git push,这样默认的是master）</span><br></pre></td></tr></table></figure>
+<h4 id="去公司之前你需要先把代码上传到自己的GitHub"><a href="#去公司之前你需要先把代码上传到自己的GitHub" class="headerlink" title="去公司之前你需要先把代码上传到自己的GitHub"></a>去公司之前你需要先把代码上传到自己的GitHub</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.给你的GitHub仓库起一个别名</span><br><span class="line">	git remote add origin 远程仓库地址</span><br><span class="line">2.向GitHub推送你的代码</span><br><span class="line">	git push -u origin 分支（后面可以简写成git push,这样默认的是master）</span><br></pre></td></tr></table></figure>
 
-<p>​    </p>
-<h4 id="5-2到公司了，是一台新电脑，我该怎么办？"><a href="#5-2到公司了，是一台新电脑，我该怎么办？" class="headerlink" title="5.2到公司了，是一台新电脑，我该怎么办？"></a>5.2到公司了，是一台新电脑，我该怎么办？</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.克隆远程仓库</span><br><span class="line">	git clone 远程仓库名称（内部已经实现了给远程仓库起别名）</span><br><span class="line">	</span><br><span class="line">2.切换分支</span><br><span class="line">	可以直接切换分支，本地新电脑已经有了所有分支</span><br><span class="line">	git checkout 分支名称</span><br></pre></td></tr></table></figure>
+
+<h4 id="到公司了，是一台新电脑，我该怎么办？"><a href="#到公司了，是一台新电脑，我该怎么办？" class="headerlink" title="到公司了，是一台新电脑，我该怎么办？"></a>到公司了，是一台新电脑，我该怎么办？</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.克隆远程仓库</span><br><span class="line">	git clone 远程仓库名称（内部已经实现了给远程仓库起别名）</span><br><span class="line"></span><br><span class="line">2.切换分支</span><br><span class="line">	可以直接切换分支，本地新电脑已经有了所有分支</span><br><span class="line">	git checkout 分支名称</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>下面展现你在公司新电脑上的一套命令流程：  </p>
+<li><p>下面展现你在公司新电脑上的一套命令流程：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.切换到dev分支进行开发</span><br><span class="line">	git checkout dev</span><br><span class="line">2.把master分支合并到dev分支（只需要做一次，以保持dev分支的最新版本）</span><br><span class="line">	git merge master</span><br><span class="line">3.修改代码</span><br><span class="line">4.提交代码到远程仓库</span><br><span class="line">	git add .</span><br><span class="line">	git commit -m &#x27;版本信息&#x27;</span><br><span class="line">	git push origin dev (提交dev分支)</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h4 id="5-3下班回家继续开发"><a href="#5-3下班回家继续开发" class="headerlink" title="5.3下班回家继续开发"></a>5.3下班回家继续开发</h4><ul>
+<h4 id="下班回家继续开发"><a href="#下班回家继续开发" class="headerlink" title="下班回家继续开发"></a>下班回家继续开发</h4><ul>
 <li><p>下面展现你回到家继续写代码</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.切换到dev分支进行开发</span><br><span class="line">	git checkout dev</span><br><span class="line">2.从远程仓库拉下代码</span><br><span class="line">	git pull origin dev</span><br><span class="line">3.继续开发</span><br><span class="line"></span><br><span class="line">4.提交代码</span><br><span class="line">	git add .</span><br><span class="line">	git commit -m &#x27;版本描述&#x27;</span><br><span class="line">	git push origin dev</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h4 id="5-4第二天又上班去"><a href="#5-4第二天又上班去" class="headerlink" title="5.4第二天又上班去"></a>5.4第二天又上班去</h4><p>下面展示你第二天上班需要做的事情</p>
+<h4 id="第二天又上班去"><a href="#第二天又上班去" class="headerlink" title="第二天又上班去"></a>第二天又上班去</h4><p>下面展示你第二天上班需要做的事情</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.切换到dev 分支进行开发</span><br><span class="line">	git checkout dev</span><br><span class="line">2.拉最新代码，这是一个更新的步骤，不需要再去clone</span><br><span class="line">	git pull origin dev </span><br><span class="line">3.继续开发</span><br><span class="line"></span><br><span class="line">4.提交代码</span><br><span class="line">	git add .</span><br><span class="line">	git commit -m &#x27;版本描述&#x27;</span><br><span class="line">	git push origin dev </span><br></pre></td></tr></table></figure>
 
-<h4 id="5-5开发完毕要上线"><a href="#5-5开发完毕要上线" class="headerlink" title="5.5开发完毕要上线"></a>5.5开发完毕要上线</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.将dev 分支合并到master分支</span><br><span class="line">	git checkout master</span><br><span class="line">	git merge dev</span><br><span class="line">	git push origin master</span><br><span class="line">	</span><br><span class="line">2.把dev推到远程仓库</span><br><span class="line">	git checkout dev</span><br><span class="line">	git merge master</span><br><span class="line">	git push origin dev</span><br></pre></td></tr></table></figure>
+<h4 id="开发完毕要上线"><a href="#开发完毕要上线" class="headerlink" title="开发完毕要上线"></a>开发完毕要上线</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.将dev 分支合并到master分支</span><br><span class="line">	git checkout master</span><br><span class="line">	git merge dev</span><br><span class="line">	git push origin master</span><br><span class="line"></span><br><span class="line">2.把dev推到远程仓库</span><br><span class="line">	git checkout dev</span><br><span class="line">	git merge master</span><br><span class="line">	git push origin dev</span><br></pre></td></tr></table></figure>
 
+<h3 id="约女票吃大餐，公司代码忘提交，回家该咋办？"><a href="#约女票吃大餐，公司代码忘提交，回家该咋办？" class="headerlink" title="约女票吃大餐，公司代码忘提交，回家该咋办？"></a>约女票吃大餐，公司代码忘提交，回家该咋办？</h3><h4 id="吃完大餐，在家继续工作"><a href="#吃完大餐，在家继续工作" class="headerlink" title="吃完大餐，在家继续工作"></a>吃完大餐，在家继续工作</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.拉代码</span><br><span class="line">	git pull origin dev</span><br><span class="line">2.继续开发新功能</span><br><span class="line"></span><br><span class="line">3.长记性，一定提交代码</span><br><span class="line">	git add .</span><br><span class="line">	git commit -m &#x27;版本描述&#x27;</span><br><span class="line">	git push origin dev</span><br></pre></td></tr></table></figure>
 
+<h4 id="第二天起床去公司赶紧拉昨天的代码"><a href="#第二天起床去公司赶紧拉昨天的代码" class="headerlink" title="第二天起床去公司赶紧拉昨天的代码"></a>第二天起床去公司赶紧拉昨天的代码</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.拉代码，把昨天晚上在家写的代码拉到本地(昨天在公司写的代码和昨晚在家写的代码之间有合并，冲突)</span><br><span class="line">	git push origin dev</span><br><span class="line">2.有冲突解决冲突</span><br><span class="line"></span><br><span class="line">3.继续开发剩余功能</span><br><span class="line"></span><br><span class="line">4.把dev分支一定记得推到远端</span><br><span class="line">	git add .</span><br><span class="line">	git commit -m &#x27;版本描述&#x27;</span><br><span class="line">	git push origin dev</span><br><span class="line">		&gt;上面一句命令有两个功能：拉下来和合并，使用下面两句命令可以替换</span><br><span class="line">		git fetch origin dev</span><br><span class="line">		git merge origin/dev</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-约女票吃大餐，公司代码忘提交，回家该咋办？"><a href="#6-约女票吃大餐，公司代码忘提交，回家该咋办？" class="headerlink" title="6.约女票吃大餐，公司代码忘提交，回家该咋办？"></a>6.约女票吃大餐，公司代码忘提交，回家该咋办？</h3><h4 id="6-1吃完大餐，在家继续工作"><a href="#6-1吃完大餐，在家继续工作" class="headerlink" title="6.1吃完大餐，在家继续工作"></a>6.1吃完大餐，在家继续工作</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.拉代码</span><br><span class="line">	git pull origin dev</span><br><span class="line">2.继续开发新功能</span><br><span class="line"></span><br><span class="line">3.长记性，一定提交代码</span><br><span class="line">	git add .</span><br><span class="line">	git commit -m &#x27;版本描述&#x27;</span><br><span class="line">	git push origin dev</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-2第二天起床去公司赶紧拉昨天的代码"><a href="#6-2第二天起床去公司赶紧拉昨天的代码" class="headerlink" title="6.2第二天起床去公司赶紧拉昨天的代码"></a>6.2第二天起床去公司赶紧拉昨天的代码</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.拉代码，把昨天晚上在家写的代码拉到本地(昨天在公司写的代码和昨晚在家写的代码之间有合并，冲突)</span><br><span class="line">	git push origin dev</span><br><span class="line">2.有冲突解决冲突</span><br><span class="line"></span><br><span class="line">3.继续开发剩余功能</span><br><span class="line"></span><br><span class="line">4.把dev分支一定记得推到远端</span><br><span class="line">	git add .</span><br><span class="line">	git commit -m &#x27;版本描述&#x27;</span><br><span class="line">	git push origin dev</span><br><span class="line">		&gt;上面一句命令有两个功能：拉下来和合并，使用下面两句命令可以替换</span><br><span class="line">		git fetch origin dev</span><br><span class="line">		git merge origin/dev</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="7-借助软件快速解决冲突的方法？"><a href="#7-借助软件快速解决冲突的方法？" class="headerlink" title="7.借助软件快速解决冲突的方法？"></a>7.借助软件快速解决冲突的方法？</h3><ol>
+<h3 id="借助软件快速解决冲突的方法？"><a href="#借助软件快速解决冲突的方法？" class="headerlink" title="借助软件快速解决冲突的方法？"></a>借助软件快速解决冲突的方法？</h3><ol>
 <li><p>安装beyond compare</p>
 </li>
 <li><p>在git配置</p>
@@ -218,20 +208,18 @@
 <li><p>使用beyond compare解决冲突</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git mergetool</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h3 id="8-使用Tag替代commit，完成版本管理"><a href="#8-使用Tag替代commit，完成版本管理" class="headerlink" title="8.使用Tag替代commit，完成版本管理"></a>8.使用Tag替代commit，完成版本管理</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git tag -a v1.0 -m &#x27;版本描述&#x27;            创建本地Tag信息</span><br><span class="line">git tag -d v1.0  												删除Tag</span><br><span class="line">git push origin --tags 									将本地Tag推送到远端仓库</span><br><span class="line">git pull origin --tags 									更新本地Tag版本信息</span><br><span class="line"></span><br><span class="line">git checkout v1.0  											切换Tag</span><br><span class="line">git clone -b v1.0 											指定Tag下载代码</span><br></pre></td></tr></table></figure>
+<h3 id="使用Tag替代commit，完成版本管理"><a href="#使用Tag替代commit，完成版本管理" class="headerlink" title="使用Tag替代commit，完成版本管理"></a>使用Tag替代commit，完成版本管理</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git tag -a v1.0 -m &#x27;版本描述&#x27;            创建本地Tag信息</span><br><span class="line">git tag -d v1.0  删除Tag</span><br><span class="line">git push origin --tags 	将本地Tag推送到远端仓库</span><br><span class="line">git pull origin --tags  更新本地Tag版本信息</span><br><span class="line"></span><br><span class="line">git checkout v1.0  	切换Tag					</span><br><span class="line">git clone -b v1.0 	指定Tag下载代码								</span><br></pre></td></tr></table></figure>
 
-
-
-<h3 id="9-杂项"><a href="#9-杂项" class="headerlink" title="9.杂项"></a>9.杂项</h3><ul>
+<h3 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h3><ul>
 <li>fork ,开源项目源代码拷贝到远程仓库</li>
 <li>给源代码的作者提交bug申请（pull request)</li>
 <li>.gitignore文件，让git不再管理当前目录下的某些文件，参见<a href="https://github.com/github/gitignore">忽略文件</a></li>
 <li>issues,文档以及任务管理</li>
 <li>Wiki，项目文档</li>
 </ul>
-<h3 id="10-感谢"><a href="#10-感谢" class="headerlink" title="10.感谢"></a>10.感谢</h3><p>​    <em><strong>本文档主要参考</strong></em><a class="btn-beautify button--animated " href="https://www.bilibili.com/video/BV19E411f76x/" 
-  title="B站 老男孩视频"><i class="far fa-hand-point-right"></i><span>B站 老男孩视频</span></a></p>
-<p>​    <em><strong>视频原笔记：<a href="https://pan.baidu.com/s/1-E8_Kcn8i8tYCRT6vepMzw" title="密码i3um">原文档参考</a></strong></em></p>
+<h3 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">***本文档主要参考***&#123;% btn &#x27;https://www.bilibili.com/video/BV19E411f76x/&#x27;,B站 老男孩视频,far fa-hand-point-right %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>***视频原笔记：[原文档参考](https://pan.baidu.com/s/1-E8_Kcn8i8tYCRT6vepMzw &quot;密码i3um&quot;)***
+</code></pre>
 ]]></content>
       <categories>
         <category>Tools</category>
@@ -240,24 +228,6 @@
         <tag>基础</tag>
         <tag>git</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/07/08/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>三次握手-四次挥手</title>
@@ -372,5 +342,23 @@
         <tag>底层</tag>
         <tag>基础</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/07/08/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
 </search>
