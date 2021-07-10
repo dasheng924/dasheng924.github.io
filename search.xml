@@ -59,6 +59,24 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2021/07/08/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>shell脚本简单总结</title>
     <url>/2020/05/18/SHELL%20%E8%84%9A%E6%9C%AC/</url>
     <content><![CDATA[<h3 id="1-shell脚本的执行"><a href="#1-shell脚本的执行" class="headerlink" title="1.shell脚本的执行"></a>1.shell脚本的执行</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1.给脚本赋予执行权限后，./xxx.sh</span><br><span class="line"></span><br><span class="line">2. . xxx.sh</span><br><span class="line"></span><br><span class="line">3. source xxx.sh</span><br></pre></td></tr></table></figure>
@@ -344,21 +362,215 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/07/08/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <title>字节对齐</title>
+    <url>/2021/02/12/%E5%AD%97%E8%8A%82%E5%AF%B9%E9%BD%90/</url>
+    <content><![CDATA[<h3 id="什么是字节对齐"><a href="#什么是字节对齐" class="headerlink" title="什么是字节对齐"></a>什么是字节对齐</h3><p>​    计算机存储的基本单位是<mark class="hl-label blue">字节(byte)</mark> ,但在读写内存的时候，我们并非一个字节一个字节的读取，而是2，4，8的倍数来读取，所以就对基本数据类型的地址做出了一些限制，它的地址也必须是2，4，8的倍数。那么数据类型就需要按照一些规则在空间上进行排列，这样就产生对齐。</p>
+<h3 id="对齐原则"><a href="#对齐原则" class="headerlink" title="对齐原则"></a>对齐原则</h3><ul>
+<li><mark class="hl-label pink">规则1:结构体变量的首地址能够被其对齐字节数大小所整除</mark> </li>
+<li><mark class="hl-label pink">规则2:结构体每个成员相对结构体首地址的偏移都是成员大小的整数倍,如不满足，对前一个成员填充字节以满足</mark> </li>
+<li><mark class="hl-label pink">规则3:结构体的总大小为结构体对最大成员大小的整数倍,如不满足，最后填充字节以满足</mark> </li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//---32位平台默认对齐4字节，64位平台默认对齐8字节</span></span><br><span class="line"><span class="comment">//32位平台举例</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">T1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> m1;</span><br><span class="line">  <span class="keyword">char</span> m2;</span><br><span class="line">  <span class="keyword">int</span> m3;</span><br><span class="line">  <span class="keyword">short</span> m4;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">T2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">char</span> a;</span><br><span class="line">  <span class="keyword">char</span> b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">T3</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">char</span> a;</span><br><span class="line">  <span class="keyword">char</span> b;</span><br><span class="line">  <span class="keyword">int</span> c;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">T4</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">char</span> a;</span><br><span class="line">  <span class="keyword">char</span> b;</span><br><span class="line">  <span class="keyword">char</span> c;</span><br><span class="line">  <span class="keyword">char</span> d;</span><br><span class="line">  <span class="keyword">char</span> e;</span><br><span class="line">  <span class="keyword">int</span> f;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">  <span class="keyword">int</span> age;</span><br><span class="line">  <span class="keyword">char</span> sex;</span><br><span class="line">  <span class="keyword">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(struct T1)&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(struct T2)&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test03</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(struct T3)&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test04</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(struct T4)&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test05</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(struct Person)&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">test01</span>(); <span class="comment">//16, m1--&gt;4  m2--&gt;4  m3--&gt;4  m4--&gt;4</span></span><br><span class="line">  <span class="built_in">test02</span>();<span class="comment">//2</span></span><br><span class="line">  <span class="built_in">test03</span>();<span class="comment">//8</span></span><br><span class="line">  <span class="built_in">test04</span>();<span class="comment">//12</span></span><br><span class="line">  <span class="built_in">test05</span>();<span class="comment">//24</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h5 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h5><table>
+<thead>
+<tr>
+<th>0~3</th>
+<th>4</th>
+<th>5~7</th>
+<th>8~11</th>
+<th>12~13</th>
+<th>14~15</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>m1</td>
+<td>m2</td>
+<td>填充</td>
+<td>m3</td>
+<td>m4</td>
+<td>填充</td>
+</tr>
+</tbody></table>
+<ul>
+<li>m3 成员变量相对结构体首地址的偏移量不是sizeof(int),也就是不是成员大小的整数倍，故前面成员填充满足，走到起始地址为8</li>
+<li>最后的填充依据规则3，结构体整个的地址是最大成员大小的整数倍，后面14～15填充</li>
+</ul>
+<h5 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h5><table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a</td>
+<td>b</td>
+</tr>
+</tbody></table>
+<h5 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h5><table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>2~3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a</td>
+<td>b</td>
+<td>填充</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">4~7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">c</td>
+</tr>
+</tbody></table>
+<h5 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h5><table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>d</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>4</th>
+<th>5~7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>e</td>
+<td>填充</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">8~11</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">f</td>
+</tr>
+</tbody></table>
+<h5 id="T5"><a href="#T5" class="headerlink" title="T5"></a>T5</h5><table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name[0]</td>
+<td>name[1]</td>
+<td>name[2]</td>
+<td>name[3]</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name[4]</td>
+<td>name[5]</td>
+<td>name[6]</td>
+<td>name[7]</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name[8]</td>
+<td>name[9]</td>
+<td>填充</td>
+<td>填充</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">12~15</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">age</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>16</th>
+<th>17~19</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sex</td>
+<td>填充</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">20~23</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">score</td>
+</tr>
+</tbody></table>
+<h5 id="T6"><a href="#T6" class="headerlink" title="T6"></a>T6</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">s1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">short</span> a;</span><br><span class="line">  <span class="keyword">long</span> b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">s2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">char</span> c;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">s1</span> <span class="title">d</span>;</span></span><br><span class="line">  <span class="keyword">long</span> <span class="keyword">long</span> e;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">sizeof</span>(s1)---&gt;<span class="number">16</span></span><br><span class="line"><span class="keyword">sizeof</span>(s2)---&gt;<span class="number">32</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">s1</span></span><br><span class="line"><span class="comment">aa******</span></span><br><span class="line"><span class="comment">bbbbbbbb</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">s2</span></span><br><span class="line"><span class="comment">c*******</span></span><br><span class="line"><span class="comment">aa******</span></span><br><span class="line"><span class="comment">bbbbbbbb</span></span><br><span class="line"><span class="comment">eeeeeeee</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+
+<h3 id="字节对齐实际应用"><a href="#字节对齐实际应用" class="headerlink" title="字节对齐实际应用"></a>字节对齐实际应用</h3><h4 id="合适的设计可以节省空间"><a href="#合适的设计可以节省空间" class="headerlink" title="合适的设计可以节省空间"></a>合适的设计可以节省空间</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">T2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> m1;</span><br><span class="line">  <span class="keyword">char</span> m2;</span><br><span class="line">  <span class="keyword">short</span> m4;</span><br><span class="line">  <span class="keyword">int</span> m3;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in"><span class="keyword">sizeof</span></span>(struct T2) ---&gt;<span class="number">12</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="跨平台通信"><a href="#跨平台通信" class="headerlink" title="跨平台通信"></a>跨平台通信</h4><ul>
+<li><p>可以指定字节对齐的字节数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> pack(1) <span class="comment">//1字节对齐</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">T1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> m1;</span><br><span class="line">  <span class="keyword">char</span> m2;</span><br><span class="line">  <span class="keyword">int</span> m3;</span><br><span class="line">  <span class="keyword">short</span> m4;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> pack() <span class="comment">//取消自定义对齐字节数</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in"><span class="keyword">sizeof</span></span>(struct T1) ---&gt;<span class="number">11</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//------------------------------------------</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">T2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> m1;</span><br><span class="line">  <span class="keyword">char</span> m2;</span><br><span class="line">  <span class="keyword">int</span> m3;</span><br><span class="line">  <span class="keyword">short</span> m4;</span><br><span class="line">&#125;__attribute__((packed)); <span class="comment">//取消结构在编译过程中的优化对齐，也可以认为是1字节对齐</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in"><span class="keyword">sizeof</span></span>(struct T2) ---&gt; <span class="number">11</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//------------------------------------------</span></span><br><span class="line">  <span class="comment">//自己填充</span></span><br><span class="line"> <span class="class"><span class="keyword">struct</span> <span class="title">T3</span></span></span><br><span class="line"><span class="class"> &#123;</span></span><br><span class="line">  <span class="keyword">int</span> m1;</span><br><span class="line">  <span class="keyword">char</span> m2;</span><br><span class="line">  <span class="keyword">char</span> r1[<span class="number">3</span>];</span><br><span class="line">  <span class="keyword">int</span> m3;</span><br><span class="line">  <span class="keyword">short</span> m4;</span><br><span class="line">  <span class="keyword">char</span> r2[<span class="number">2</span>];  </span><br><span class="line"> &#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
 ]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>基础</tag>
+        <tag>字节对齐</tag>
+      </tags>
   </entry>
 </search>
