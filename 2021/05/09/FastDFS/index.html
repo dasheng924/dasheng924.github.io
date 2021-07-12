@@ -1,0 +1,300 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FastDFS配置与使用 | 大圣的博客</title><meta name="keywords" content="fdfs"><meta name="author" content="Dasheng"><meta name="copyright" content="Dasheng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="分布式文件系统  文件系统 - 存储数据分布式 - 分布式存储简单的来说，就是将数据分散存储到多个存储设备(服务器)上。 它可以看做是基于文件的 key&#x2F;value 存储系统，key 为文件 ID，value 为文件内容，因此称作分布式文件存储服务更为合适。 属于应用级文件系统，通过API进行访问，该文件系统通过C语言进行实现。可以实现冗余备份，负载均衡  数据库和文件系统的区别：文件系统：存储数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FastDFS配置与使用">
+<meta property="og:url" content="http://dasheng924.cn/2021/05/09/FastDFS/index.html">
+<meta property="og:site_name" content="大圣的博客">
+<meta property="og:description" content="分布式文件系统  文件系统 - 存储数据分布式 - 分布式存储简单的来说，就是将数据分散存储到多个存储设备(服务器)上。 它可以看做是基于文件的 key&#x2F;value 存储系统，key 为文件 ID，value 为文件内容，因此称作分布式文件存储服务更为合适。 属于应用级文件系统，通过API进行访问，该文件系统通过C语言进行实现。可以实现冗余备份，负载均衡  数据库和文件系统的区别：文件系统：存储数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gsenfdjj13j31bi0u0kjw.jpg">
+<meta property="article:published_time" content="2021-05-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-12T18:16:47.087Z">
+<meta property="article:author" content="Dasheng">
+<meta property="article:tag" content="FastDFS">
+<meta property="article:tag" content="文件系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gsenfdjj13j31bi0u0kjw.jpg"><link rel="shortcut icon" href="/img/me.png"><link rel="canonical" href="http://dasheng924.cn/2021/05/09/FastDFS/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/pwa/16.png"/><link rel="mask-icon" href="/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'FastDFS配置与使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-07-13 02:16:47'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/static-butterfly/dist/css/index.min.css"><style>#article-container.post-content h1:before, h2:before, h3:before, h4:before, h5:before, h6:before { -webkit-animation: avatar_turn_around 1s linear infinite; -moz-animation: avatar_turn_around 1s linear infinite; -o-animation: avatar_turn_around 1s linear infinite; -ms-animation: avatar_turn_around 1s linear infinite; animation: avatar_turn_around 1s linear infinite; }</style><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/me.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tva1.sinaimg.cn/large/008i3skNly1gsenfdjj13j31bi0u0kjw.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">大圣的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">FastDFS配置与使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-08T16:00:00.000Z" title="发表于 2021-05-09 00:00:00">2021-05-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-07-12T18:16:47.087Z" title="更新于 2021-07-13 02:16:47">2021-07-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Tools/">Tools</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="FastDFS配置与使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="分布式文件系统"><a href="#分布式文件系统" class="headerlink" title="分布式文件系统"></a>分布式文件系统</h3><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsenbno4kdj30rr0isacq.jpg" style="zoom:67%;" />
+
+<h4 id="文件系统-存储数据"><a href="#文件系统-存储数据" class="headerlink" title="文件系统 - 存储数据"></a>文件系统 - 存储数据</h4><h4 id="分布式存储简单的来说，就是将数据分散存储到多个存储设备-服务器-上。"><a href="#分布式存储简单的来说，就是将数据分散存储到多个存储设备-服务器-上。" class="headerlink" title="- 分布式存储简单的来说，就是将数据分散存储到多个存储设备(服务器)上。"></a><mark class="hl-label blue">分布式</mark> - 分布式存储简单的来说，就是将数据分散存储到多个存储设备(服务器)上。</h4><ul>
+<li>它可以看做是基于文件的 key/value 存储系统，key 为文件 ID，value 为文件内容，因此称作分布式文件存储服务更为合适。</li>
+<li>属于应用级文件系统，通过API进行访问，该文件系统通过C语言进行实现。可以实现冗余备份，负载均衡</li>
+</ul>
+<h3 id="数据库和文件系统的区别："><a href="#数据库和文件系统的区别：" class="headerlink" title="数据库和文件系统的区别："></a>数据库和文件系统的区别：</h3><h4 id="文件系统：存储数据"><a href="#文件系统：存储数据" class="headerlink" title="文件系统：存储数据"></a>文件系统：存储数据</h4><ul>
+<li>数据库：把一些数据组织成一定的表结构放到文件系统里面（云盘的数据会放到这个文件系统里面）；数据库里面放的是用户和密码和用户对应的所属文件名称（也就是文件存在的记录，不是实体文件）</li>
+</ul>
+<h4 id="文件系统分为三个角色：。-tracker和storage属于服务器端"><a href="#文件系统分为三个角色：。-tracker和storage属于服务器端" class="headerlink" title="文件系统分为三个角色：。  tracker和storage属于服务器端"></a>文件系统分为三个角色：<mark class="hl-label client">客户端</mark> 。  tracker和storage属于服务器端</h4><h4 id="三个角色之间的关系"><a href="#三个角色之间的关系" class="headerlink" title="三个角色之间的关系"></a>三个角色之间的关系</h4><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsdi0z6m4rj30s40d2ta0.jpg" alt="image-20210712005744350"></p>
+<ul>
+<li><p>Tracker Server 与 Storage Server 之间不直接通信，其基本的信息由配置文件在系统启动加</p>
+<p>载时获知。</p>
+</li>
+<li><p>client和storage会主动联系tacker，storage会主动向tracker汇报信息(l跟踪器主要做调度工作，在访问上起负载均衡的作用)</p>
+<ul>
+<li>磁盘剩余情况</li>
+<li>文件同步情况</li>
+<li>文件上传和下载次数</li>
+</ul>
+</li>
+<li><p>storage会启动一个单独的线程和tacker进行沟通(存储节点存储文件，完成文件管理的所有功能)</p>
+<ul>
+<li>连接和定时报告信息</li>
+</ul>
+</li>
+<li><p>一个组包含的storage不是通过配置文件设定的，而是通过tracker获取到的         </p>
+<h4 id="stacker集群就是轮询的工作方式-多台-Tracker-Server-之间保证了-Tracker-的分布式，Tracker-Server-之间是对等的，防止了单点故障"><a href="#stacker集群就是轮询的工作方式-多台-Tracker-Server-之间保证了-Tracker-的分布式，Tracker-Server-之间是对等的，防止了单点故障" class="headerlink" title="stacker集群就是轮询的工作方式(多台 Tracker Server 之间保证了 Tracker 的分布式，Tracker Server 之间是对等的，防止了单点故障)"></a>stacker集群就是轮询的工作方式(多台 Tracker Server 之间保证了 Tracker 的分布式，Tracker Server 之间是对等的，防止了单点故障)</h4></li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/008i3skNly1gseaf5pxp9j30go0ba3za.jpg" alt="image-20210712172020225" style="zoom: 67%;" />
+
+<ul>
+<li>一个组里的数据容量取决于最小的节点存储大小，各个节点之间就是数据备份。这个就是纵向扩容。横向扩容就是再加组的个数，增加容量的大小。每个 Group 中的Storage 都是互相备份的，也就是说，如果 Group1 有 Storage1、Storage2、Storage3，其容量分别是100GB、200GB、300GB，那么 Group1 的存储能力是 100GB，而不是 300GB，这就是互相备份的意思。</li>
+<li>横向扩容：增加容量–添加group组的个数,可以使数据流量足够分散</li>
+<li>纵向扩容：数据备份，当前组容量的最大值是存储节点的最小值；所有存储节点的组名是一样的。</li>
+</ul>
+<h3 id="FastDFS-的安装"><a href="#FastDFS-的安装" class="headerlink" title="FastDFS 的安装"></a>FastDFS 的安装</h3><ul>
+<li><mark class="hl-label pink">第一步</mark> ：如果是FastDFS是2.0之前的版本，请先安装好libevent环境（新版本不需要安装）。
+
+<a class="btn-beautify button--animated " target="_blank" rel="noopener" href="http://libevent.org" 
+  title="libevent下载地址"><i class="far fa-hand-point-right"></i><span>libevent下载地址</span></a></li>
+<li><mark class="hl-label pink">第二步</mark> ：libfastcommon为FastDFS操作的基础库，FastDFS没有使用标准的库，而是封装了一套和FastDFS相关的库。
+
+<a class="btn-beautify button--animated " target="_blank" rel="noopener" href="https://github.com/happyfish100/libfastcommon" 
+  title="libfastcommon下载"><i class="far fa-hand-point-right"></i><span>libfastcommon下载</span></a>
+
+<blockquote>
+<p>1.解压 tar -xzvf libfastcommon-1.0.7.tar.gz</p>
+<p>2.进入解压目录，./make.sh</p>
+<p>3.sudo ./make.sh install </p>
+<p>4./usr/lib64/ 查看生成的动态库</p>
+<p>5.若使用过程中找不见动态库，sudo ln -s /usr/lib64/libfastcommon.so /usr/lib/libfastcommon.so</p>
+</blockquote>
+</li>
+<li><mark class="hl-label pink">第三步</mark> ：下载源码
+
+<a class="btn-beautify button--animated " href="/l%20https:/github.com/happyfish100/fastdfs.git" 
+  title="FastDFS下载地址"><i class="far fa-hand-point-right"></i><span>FastDFS下载地址</span></a></li>
+<li><mark class="hl-label pink">解压，编译，运行</mark> 
+
+<blockquote>
+<p>tar -zxvf xxx</p>
+<p>./make.sh</p>
+<p>sudo ./make.sh install</p>
+<p>/usr/bin/fdfs* 看安装成功的可执行文件               </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="FastDFS-配置"><a href="#FastDFS-配置" class="headerlink" title="FastDFS 配置"></a>FastDFS 配置</h3><h4 id="tracker配置"><a href="#tracker配置" class="headerlink" title="tracker配置"></a>tracker配置</h4><img src="https://tva1.sinaimg.cn/large/008i3skNly1gseo4u623gj310i0d4n4h.jpg" style="zoom:67%;" />
+
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">#</span>配置文件目录 /etc/fdfs/</span><br><span class="line"><span class="params">#</span>先把原有的后缀为 .sample 的文件拷贝一份，变成后缀为 .conf</span><br><span class="line"><span class="params">#</span>依次对配置文件修改</span><br><span class="line">//1.修改IP，为空绑定主机的所有地址</span><br><span class="line">bind<span class="built_in">_</span>addr=10.211.55.11</span><br><span class="line">//2.设置Tracker Server 的端口，sudo netstat ano | grep &quot;22122&quot; </span><br><span class="line">port=22122</span><br><span class="line">//3.log	输出目录和仓库数据存储位置</span><br><span class="line">base<span class="built_in">_</span>path=/home/parallels/fdfs/tracker</span><br></pre></td></tr></table></figure>
+
+<h4 id="storage配置"><a href="#storage配置" class="headerlink" title="storage配置"></a>storage配置</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//1.组名设置，默认OK</span><br><span class="line">group<span class="built_in">_</span>name=group1</span><br><span class="line">//2.storage所在服务器的IP</span><br><span class="line">bind<span class="built_in">_</span>addr=10.211.55.11</span><br><span class="line">//3.storage的端口</span><br><span class="line">port=23000</span><br><span class="line">//4.storage日志目录</span><br><span class="line">base<span class="built_in">_</span>path=/home/parallels/fdfs/storage</span><br><span class="line">//5.真正存储数据的位置</span><br><span class="line">store<span class="built_in">_</span>path0=/home/parallels/fdfs/storage</span><br><span class="line">//6.tracker的IP和端口</span><br><span class="line">tracker<span class="built_in">_</span>server=10.211.55.11:22122</span><br><span class="line">//7.数据仓库的数量</span><br><span class="line">store<span class="built_in">_</span>path<span class="built_in">_</span>count=1</span><br></pre></td></tr></table></figure>
+
+<h4 id="client的配置"><a href="#client的配置" class="headerlink" title="client的配置"></a>client的配置</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">base<span class="built_in">_</span>path=/home/parallels/fdfs/client</span><br><span class="line"><span class="params">#</span>  &quot;host:port&quot;, host can be hostname or ip address</span><br><span class="line">tracker<span class="built_in">_</span>server=10.211.55.11:2212</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><h4 id="tracker的启动fdfs服务"><a href="#tracker的启动fdfs服务" class="headerlink" title="tracker的启动fdfs服务"></a>tracker的启动fdfs服务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fdfs_trackerd /etc/fdfs/tracker.conf</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gseooe3g2oj31ga03ego8.jpg" alt="image-20210713013340673"></p>
+<h4 id="storage启动服务"><a href="#storage启动服务" class="headerlink" title="storage启动服务"></a>storage启动服务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo fdfs_storaged /etc/fdfs/storage.conf</span><br><span class="line">ps aux|grep -v grep|grep fdfs</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="客户端启动"><a href="#客户端启动" class="headerlink" title="客户端启动"></a>客户端启动</h3><h4 id="storage状态检测"><a href="#storage状态检测" class="headerlink" title="storage状态检测"></a>storage状态检测</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdfs_monitor /etc/fdfs/client.conf</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsep0x1rhdj31xb0u0amk.jpg" alt="image-20210713014542308"></p>
+<h4 id="storage-状态分类"><a href="#storage-状态分类" class="headerlink" title="storage 状态分类"></a>storage 状态分类</h4><table>
+<thead>
+<tr>
+<th align="center">状态</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">INIT</td>
+<td>初始化，尚未得到同步已有数据的源服务器</td>
+</tr>
+<tr>
+<td align="center">WAIT_SYNC</td>
+<td>等待同步，已得到同步已有数据的源服务器</td>
+</tr>
+<tr>
+<td align="center">SYNCING</td>
+<td>同步中</td>
+</tr>
+<tr>
+<td align="center">DELETED</td>
+<td>已删除，该服务器从本组中摘除</td>
+</tr>
+<tr>
+<td align="center">OFFLINE</td>
+<td>离线</td>
+</tr>
+<tr>
+<td align="center">ONLINE</td>
+<td>在线，尚不能提供服务</td>
+</tr>
+<tr>
+<td align="center">ACTIVE</td>
+<td>在线，可以提供服务</td>
+</tr>
+</tbody></table>
+<h3 id="客户端使用"><a href="#客户端使用" class="headerlink" title="客户端使用"></a>客户端使用</h3><h4 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdfs<span class="built_in">_</span>upload<span class="built_in">_</span>file /etc/fdfs/client.conf xxxxx</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsepdneejoj321c0cwn1f.jpg" alt="文件上传"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsepii22q8j31wk0aeq9k.jpg" alt="仓库矩阵"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsepjiymvvj313s04kju7.jpg" alt="文件存放具体位置"></p>
+<h4 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdfs_download_file /etc/fdfs/client.conf  文件唯一串（上图那个）</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gseph9jvv5j3218084797.jpg" alt="文件下载"></p>
+<h4 id="文件删除"><a href="#文件删除" class="headerlink" title="文件删除"></a>文件删除</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdfs_delete_file /etc/fdfs/client.conf 文件唯一串</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gseplzyxloj322a08e442.jpg" alt="文件删除"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Dasheng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://dasheng924.cn/2021/05/09/FastDFS/">http://dasheng924.cn/2021/05/09/FastDFS/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://dasheng924.cn" target="_blank">大圣的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/FastDFS/">FastDFS</a><a class="post-meta__tags" href="/tags/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">文件系统</a></div><div class="post_share"><div class="social-share" data-image="https://tva1.sinaimg.cn/large/008i3skNly1gsenfdjj13j31bi0u0kjw.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/07/08/hello-world/"><img class="prev-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Hello World</div></div></a></div><div class="next-post pull-right"><a href="/2021/02/12/%E5%AD%97%E8%8A%82%E5%AF%B9%E9%BD%90/"><img class="next-cover" src="https://tva1.sinaimg.cn/large/008i3skNly1gscdh0sq92j31i60u04p6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">字节对齐</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">分布式文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F-%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE"><span class="toc-number">1.1.</span> <span class="toc-text">文件系统 - 存储数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%80%E5%8D%95%E7%9A%84%E6%9D%A5%E8%AF%B4%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%B0%86%E6%95%B0%E6%8D%AE%E5%88%86%E6%95%A3%E5%AD%98%E5%82%A8%E5%88%B0%E5%A4%9A%E4%B8%AA%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E4%B8%8A%E3%80%82"><span class="toc-number">1.2.</span> <span class="toc-text">分布式 - 分布式存储简单的来说，就是将数据分散存储到多个存储设备(服务器)上。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">数据库和文件系统的区别：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9A%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE"><span class="toc-number">2.1.</span> <span class="toc-text">文件系统：存储数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%88%86%E4%B8%BA%E4%B8%89%E4%B8%AA%E8%A7%92%E8%89%B2%EF%BC%9A%E3%80%82-tracker%E5%92%8Cstorage%E5%B1%9E%E4%BA%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF"><span class="toc-number">2.2.</span> <span class="toc-text">文件系统分为三个角色：客户端 。  tracker和storage属于服务器端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E4%B8%AA%E8%A7%92%E8%89%B2%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">2.3.</span> <span class="toc-text">三个角色之间的关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#stacker%E9%9B%86%E7%BE%A4%E5%B0%B1%E6%98%AF%E8%BD%AE%E8%AF%A2%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F-%E5%A4%9A%E5%8F%B0-Tracker-Server-%E4%B9%8B%E9%97%B4%E4%BF%9D%E8%AF%81%E4%BA%86-Tracker-%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%EF%BC%8CTracker-Server-%E4%B9%8B%E9%97%B4%E6%98%AF%E5%AF%B9%E7%AD%89%E7%9A%84%EF%BC%8C%E9%98%B2%E6%AD%A2%E4%BA%86%E5%8D%95%E7%82%B9%E6%95%85%E9%9A%9C"><span class="toc-number">2.4.</span> <span class="toc-text">stacker集群就是轮询的工作方式(多台 Tracker Server 之间保证了 Tracker 的分布式，Tracker Server 之间是对等的，防止了单点故障)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FastDFS-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">FastDFS 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FastDFS-%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">FastDFS 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tracker%E9%85%8D%E7%BD%AE"><span class="toc-number">4.1.</span> <span class="toc-text">tracker配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#storage%E9%85%8D%E7%BD%AE"><span class="toc-number">4.2.</span> <span class="toc-text">storage配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#client%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">4.3.</span> <span class="toc-text">client的配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">5.</span> <span class="toc-text">启动服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tracker%E7%9A%84%E5%90%AF%E5%8A%A8fdfs%E6%9C%8D%E5%8A%A1"><span class="toc-number">5.1.</span> <span class="toc-text">tracker的启动fdfs服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#storage%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">5.2.</span> <span class="toc-text">storage启动服务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8"><span class="toc-number">6.</span> <span class="toc-text">客户端启动</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#storage%E7%8A%B6%E6%80%81%E6%A3%80%E6%B5%8B"><span class="toc-number">6.1.</span> <span class="toc-text">storage状态检测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#storage-%E7%8A%B6%E6%80%81%E5%88%86%E7%B1%BB"><span class="toc-number">6.2.</span> <span class="toc-text">storage 状态分类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BD%BF%E7%94%A8"><span class="toc-number">7.</span> <span class="toc-text">客户端使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">7.1.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">7.2.</span> <span class="toc-text">文件下载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4"><span class="toc-number">7.3.</span> <span class="toc-text">文件删除</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Dasheng</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><span>陕ICP备19006864号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,200" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
