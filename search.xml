@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>网络模型</title>
+    <url>/2020/06/20/OSI%20%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h4 id="1-OSI-七层模型"><a href="#1-OSI-七层模型" class="headerlink" title="1.OSI 七层模型"></a>1.OSI 七层模型</h4><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsa0oyuoylj618m0so48z02.jpg" style="zoom:60%;" />
+
+<ul>
+<li><ol>
+<li>物理层：网线的类型，光纤的接口，网卡等硬件设备，主要作用：传输比特流（1，0转化为电流的强弱），这一层的数据叫做<mark class="hl-label blue">比特</mark> </li>
+<li>数据链路层：物理层面两个主机间的通信传输，将比特流划分为帧传输给对端数据单元为<mark class="hl-label pink">帧</mark> </li>
+<li>网络层：在网络上将数据传输到目的地址，负责寻址和路由的选择，传输路径的选择,数据单元为<mark class="hl-label pink">包</mark> </li>
+<li>传输层：提供数据的传输服务，在端到端之间进行数据传输，数据单元为<mark class="hl-label pink">段</mark> </li>
+<li>会话层：管理和协调不同主机上面各个进程间的通信，管理端到端的连接</li>
+<li>表示层：数据格式的转换，如编码，格式转换，加密，解密</li>
+<li>应用层：应用程序和网络之间的接口，直接向用户提供服务。比如电子邮件协议，远程登录协议，FTP协议</li>
+</ol>
+</li>
+</ul>
+<h4 id="2-TCP-IP四层模型"><a href="#2-TCP-IP四层模型" class="headerlink" title="2.TCP/IP四层模型"></a>2.TCP/IP四层模型</h4><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsa1d6d63dj30nx0d9tan.jpg" style="zoom:80%;" />
+
+<h5 id="1-网络接入层："><a href="#1-网络接入层：" class="headerlink" title="1.网络接入层："></a>1.网络接入层：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">对网络介质的管理，以及定义如何使用网络来通信。设备之间通过物理介质互连，互连的设备通过 &#123;% btn &#x27;https://baike.baidu.com/item/MAC地址&#x27;,MAC地址,far fa-hand-point-right %&#125;实现数据的传输。采用MAC地址就是为了识别同一个网络上面的设备。</span><br></pre></td></tr></table></figure>
+
+
+<h5 id="2-网络层："><a href="#2-网络层：" class="headerlink" title="2.网络层："></a>2.网络层：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用IP协议，根据IP地址进行数据包的转发，也就是把数据包从源地址发送到目的地址。路由器就是通过网络层实现转发数据包的功能。每个节点会根据地址的信息来判断该报文由那个网卡发出来的。MAC寻址中会参考MAC地址转发表，IP寻址会参考路由控制表。</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsa1ul4uf3j60gq05cdg702.jpg"></p>
+<ul>
+<li>IP：IP作为主机的标识，使整个互联网都能收到数据。IP协议独立于底层介质，实现从源到目的端的数据传输。iP协议不具有重发机制，属于非可靠的传输协议，需要依靠上层的TCP协议来实现。</li>
+<li><a class="btn-beautify button--animated " href="https://baike.baidu.com/item/ICMP" 
+  title="ICMP"><i class="far fa-hand-point-right"></i><span>ICMP</span></a>用于在IP主机中，路由之间传递控制消息的协议，用来诊断网络的健康状况。</li>
+<li><a class="btn-beautify button--animated " href="https://baike.baidu.com/item/ARP/609343" 
+  title="ARP"><i class="far fa-hand-point-right"></i><span>ARP</span></a>从数据包的IP地址中解析出MAC地址。</li>
+</ul>
+<h5 id="3-传输层："><a href="#3-传输层：" class="headerlink" title="3.传输层："></a>3.传输层：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">主要功能就是让应用程序直接相互通信，通过端口号进行识别应用程序。使用面向连接的&#123;% label TCP协议 blue %&#125;和面向无连接的&#123;% label UDP协议 blue %&#125;.面向连接就是打电话，需要双方建立连接，确认对方存在且正常。面向无连接就是寄信，只需要知道一个地址，不需要确认对方是否存在，也不需要确认对方是否会收到信。</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><a class="btn-beautify button--animated " href="https://baike.baidu.com/item/TCP/33012" 
+  title="TCP"><i class="far fa-hand-point-right"></i><span>TCP</span></a> 面向连接的，可靠的流式传输协议,用于文件传输</li>
+<li><a class="btn-beautify button--animated " href="https://baike.baidu.com/item/UDP" 
+  title="UDP"><i class="far fa-hand-point-right"></i><span>UDP</span></a>面向无连接的，不可靠的报式传输协议，用于视频通话，直播</li>
+</ul>
+<h5 id="5-应用层："><a href="#5-应用层：" class="headerlink" title="5.应用层："></a>5.应用层：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">常见的协议都是应用层的协议，如HTTP，POP3，FTP</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="4-封装和解装"><a href="#4-封装和解装" class="headerlink" title="4. 封装和解装"></a>4. 封装和解装</h4><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsa2m2jc84j30u008lq4g.jpg" alt="封装"></p>
+<p>数据发送之前，按照参考模型从上面到下面都会封装各自层的信息，包括数据和各层的协议信息。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsa2o7p4kyj30u008lwg0.jpg" alt="解封包"></p>
+<p>按照模型，从下到上，每过一层就去掉一层协议信息，到最后的应用层就会拿到数据</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
+        <tag>底层</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>FastDFS配置与使用</title>
     <url>/2021/05/09/FastDFS/</url>
     <content><![CDATA[<h3 id="分布式文件系统"><a href="#分布式文件系统" class="headerlink" title="分布式文件系统"></a>分布式文件系统</h3><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsenbno4kdj30rr0isacq.jpg" style="zoom:67%;" />
@@ -146,64 +204,6 @@
       </tags>
   </entry>
   <entry>
-    <title>网络模型</title>
-    <url>/2020/06/20/OSI%20%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<h4 id="1-OSI-七层模型"><a href="#1-OSI-七层模型" class="headerlink" title="1.OSI 七层模型"></a>1.OSI 七层模型</h4><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsa0oyuoylj618m0so48z02.jpg" style="zoom:60%;" />
-
-<ul>
-<li><ol>
-<li>物理层：网线的类型，光纤的接口，网卡等硬件设备，主要作用：传输比特流（1，0转化为电流的强弱），这一层的数据叫做<mark class="hl-label blue">比特</mark> </li>
-<li>数据链路层：物理层面两个主机间的通信传输，将比特流划分为帧传输给对端数据单元为<mark class="hl-label pink">帧</mark> </li>
-<li>网络层：在网络上将数据传输到目的地址，负责寻址和路由的选择，传输路径的选择,数据单元为<mark class="hl-label pink">包</mark> </li>
-<li>传输层：提供数据的传输服务，在端到端之间进行数据传输，数据单元为<mark class="hl-label pink">段</mark> </li>
-<li>会话层：管理和协调不同主机上面各个进程间的通信，管理端到端的连接</li>
-<li>表示层：数据格式的转换，如编码，格式转换，加密，解密</li>
-<li>应用层：应用程序和网络之间的接口，直接向用户提供服务。比如电子邮件协议，远程登录协议，FTP协议</li>
-</ol>
-</li>
-</ul>
-<h4 id="2-TCP-IP四层模型"><a href="#2-TCP-IP四层模型" class="headerlink" title="2.TCP/IP四层模型"></a>2.TCP/IP四层模型</h4><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsa1d6d63dj30nx0d9tan.jpg" style="zoom:80%;" />
-
-<h5 id="1-网络接入层："><a href="#1-网络接入层：" class="headerlink" title="1.网络接入层："></a>1.网络接入层：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">对网络介质的管理，以及定义如何使用网络来通信。设备之间通过物理介质互连，互连的设备通过 &#123;% btn &#x27;https://baike.baidu.com/item/MAC地址&#x27;,MAC地址,far fa-hand-point-right %&#125;实现数据的传输。采用MAC地址就是为了识别同一个网络上面的设备。</span><br></pre></td></tr></table></figure>
-
-
-<h5 id="2-网络层："><a href="#2-网络层：" class="headerlink" title="2.网络层："></a>2.网络层：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用IP协议，根据IP地址进行数据包的转发，也就是把数据包从源地址发送到目的地址。路由器就是通过网络层实现转发数据包的功能。每个节点会根据地址的信息来判断该报文由那个网卡发出来的。MAC寻址中会参考MAC地址转发表，IP寻址会参考路由控制表。</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsa1ul4uf3j60gq05cdg702.jpg"></p>
-<ul>
-<li>IP：IP作为主机的标识，使整个互联网都能收到数据。IP协议独立于底层介质，实现从源到目的端的数据传输。iP协议不具有重发机制，属于非可靠的传输协议，需要依靠上层的TCP协议来实现。</li>
-<li><a class="btn-beautify button--animated " href="https://baike.baidu.com/item/ICMP" 
-  title="ICMP"><i class="far fa-hand-point-right"></i><span>ICMP</span></a>用于在IP主机中，路由之间传递控制消息的协议，用来诊断网络的健康状况。</li>
-<li><a class="btn-beautify button--animated " href="https://baike.baidu.com/item/ARP/609343" 
-  title="ARP"><i class="far fa-hand-point-right"></i><span>ARP</span></a>从数据包的IP地址中解析出MAC地址。</li>
-</ul>
-<h5 id="3-传输层："><a href="#3-传输层：" class="headerlink" title="3.传输层："></a>3.传输层：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">主要功能就是让应用程序直接相互通信，通过端口号进行识别应用程序。使用面向连接的&#123;% label TCP协议 blue %&#125;和面向无连接的&#123;% label UDP协议 blue %&#125;.面向连接就是打电话，需要双方建立连接，确认对方存在且正常。面向无连接就是寄信，只需要知道一个地址，不需要确认对方是否存在，也不需要确认对方是否会收到信。</span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li><a class="btn-beautify button--animated " href="https://baike.baidu.com/item/TCP/33012" 
-  title="TCP"><i class="far fa-hand-point-right"></i><span>TCP</span></a> 面向连接的，可靠的流式传输协议,用于文件传输</li>
-<li><a class="btn-beautify button--animated " href="https://baike.baidu.com/item/UDP" 
-  title="UDP"><i class="far fa-hand-point-right"></i><span>UDP</span></a>面向无连接的，不可靠的报式传输协议，用于视频通话，直播</li>
-</ul>
-<h5 id="5-应用层："><a href="#5-应用层：" class="headerlink" title="5.应用层："></a>5.应用层：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">常见的协议都是应用层的协议，如HTTP，POP3，FTP</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="4-封装和解装"><a href="#4-封装和解装" class="headerlink" title="4. 封装和解装"></a>4. 封装和解装</h4><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsa2m2jc84j30u008lq4g.jpg" alt="封装"></p>
-<p>数据发送之前，按照参考模型从上面到下面都会封装各自层的信息，包括数据和各层的协议信息。</p>
-<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsa2o7p4kyj30u008lwg0.jpg" alt="解封包"></p>
-<p>按照模型，从下到上，每过一层就去掉一层协议信息，到最后的应用层就会拿到数据</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>网络</tag>
-        <tag>底层</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>shell脚本简单总结</title>
     <url>/2020/05/18/SHELL%20%E8%84%9A%E6%9C%AC/</url>
     <content><![CDATA[<h3 id="1-shell脚本的执行"><a href="#1-shell脚本的执行" class="headerlink" title="1.shell脚本的执行"></a>1.shell脚本的执行</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1.给脚本赋予执行权限后，./xxx.sh</span><br><span class="line"></span><br><span class="line">2. . xxx.sh</span><br><span class="line"></span><br><span class="line">3. source xxx.sh</span><br></pre></td></tr></table></figure>
@@ -241,6 +241,24 @@
         <tag>基础</tag>
         <tag>shell</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/07/08/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>git学习</title>
@@ -364,7 +382,7 @@
 </ul>
 <h3 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h3><p>本文档主要参考<a class="btn-beautify button--animated " href="https://www.bilibili.com/video/BV19E411f76x/" 
   title="B站 老男孩视频"><i class="far fa-hand-point-right"></i><span>B站 老男孩视频</span></a></p>
-<p>视频原笔记：<a href="https://pan.baidu.com/s/1-E8_Kcn8i8tYCRT6vepMzw" title="密码i3um">原文档参考</a></p>
+<p>视频原笔记：<a href="https://pan.baidu.com/s/1-E8_Kcn8i8tYCRT6vepMzw" title="密码i3um">原文档参考i3um</a></p>
 ]]></content>
       <categories>
         <category>Tools</category>
@@ -373,24 +391,6 @@
         <tag>基础</tag>
         <tag>git</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/07/08/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>static</title>
