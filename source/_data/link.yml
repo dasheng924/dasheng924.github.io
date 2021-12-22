@@ -1,0 +1,28 @@
+- class_name: 友情链接
+  class_desc: 那些人，那些事
+  link_list:
+    - name: Hexo
+      link: https://hexo.io/zh-tw/
+      avatar: https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg
+      descr: 快速、简单且强大的网誌框架
+    - name: Butterfly
+      limk: https://github.com/jerryc127/hexo-theme-butterfly
+      avatar: https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/butterfly-github-avatar.png
+      descr: 主题Butterfly
+
+- class_name: 网站
+  class_desc: 值得推荐的网站
+  link_list:
+    - name: 朋友的站
+      link: https://aurora811.gitee.io
+      avatar: https://gitee.com/Aurora811/image/raw/master/touxiang.jpg
+      descr: 朋友的博客
+    - name: Qt中文文档
+      link: http://qt5.digitser.net/zh-CN.html
+      avatar: http://81.68.126.32:8090/upload/2021/07/8f2e9dc7992789c8613f3a1b64976391-432f07a40dbb446a8c9dda38ccea6101.jpeg
+      descr: Qt文档参考
+    - name: C/C++参考文档
+      link: https://zh.cppreference.com/w/%e9%a6%96%e9%a1%b5
+      avatar: http://81.68.126.32:8090/upload/2021/07/src=http___i.loli.net_2020_07_25_YfUdMlncDQ8ItbC.png&refer=http___i.loli-a464436a43d0495e9da4ca51227759b6.jpg
+      descr: C/C++
+
