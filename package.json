@@ -29,7 +29,7 @@
     "hexo-theme-landscape": "^0.0.3",
     "hexo-wordcount": "^6.0.1",
     "or": "^0.2.0",
-    "yarn": "^1.22.10"
+    "yarn": "^1.22.17"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1"
