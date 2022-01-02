@@ -110,5 +110,5 @@ search:
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
-  repo: https://dasheng924.gitee.io
+  repo: https://gitee.com/dasheng924/dasheng924.git
   branch: master
